@@ -34,4 +34,8 @@ SECTIONS {
 	.riscv : {
 		*(.riscv.*)
 	} > RAM
+	
+	.eh_frame : {
+		*(.eh_frame)
+	} > RAM
 }
