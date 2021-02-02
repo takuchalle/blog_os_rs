@@ -1,7 +1,7 @@
 #![no_std]
 #![no_main]
 
-mod uart;
+use blog_os_rs::println;
 
 use core::panic::PanicInfo;
 
@@ -12,6 +12,7 @@ fn panic(_info: &PanicInfo) -> ! {
 
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
-    println!("Hello, World!");
+    let x = 3;
+    println!("Hello, World! {}", x);
     loop {}
 }
