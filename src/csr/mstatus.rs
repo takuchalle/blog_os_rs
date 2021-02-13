@@ -14,15 +14,11 @@ pub enum Mpp {
 
 impl Mstatus {
     pub fn read() -> Mstatus {
-        let result: usize;
-        unsafe {
-            asm!("csrr {}, mstatus", out(reg) result);
-        }
-        Mstatus { state: result }
+        Mstatus { state: read_csr!(0x300) }
     }
 
     pub fn write(&self) {
-        unsafe { asm!("csrrw x0, mstatus, {}", in(reg) self.state) }
+        write_csr!(0x300, self.state);
     }
 
     pub fn mie(&self) -> bool {
