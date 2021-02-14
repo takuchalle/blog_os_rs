@@ -11,4 +11,8 @@ impl Medeleg {
         let bits = read_csr!(0x302);
         Self { bits }
     }
+
+    pub fn delegate_all() {
+        write_csr!(0x302, 0xffff);
+    }
 }

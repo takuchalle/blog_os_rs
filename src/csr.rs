@@ -20,5 +20,6 @@ macro_rules! read_csr{
 }
 
 pub mod medeleg;
+pub mod mideleg;
 pub mod mepc;
 pub mod mstatus;

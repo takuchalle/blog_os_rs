@@ -32,7 +32,11 @@ pub extern "C" fn _start() -> ! {
     println!("addr {:X}", addr);
     csr::mepc::Mepc::write(addr);
 
-    //
+    // deleget all interrupt/exception to supervisor mode
+    csr::medeleg::Medeleg::delegate_all();
+    csr::mideleg::Mideleg::delegate_all();
+
+    // switch to supervisor mode
     unsafe { asm!("mret") }
 
     loop {}
