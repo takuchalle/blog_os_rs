@@ -36,6 +36,12 @@ pub extern "C" fn _start() -> ! {
     csr::medeleg::Medeleg::delegate_all();
     csr::mideleg::Mideleg::delegate_all();
 
+    let mut sie = csr::sie::Sie::read();
+    sie.enable_seie();
+    sie.enable_stie();
+    sie.enable_ssie();
+    sie.write();
+
     // switch to supervisor mode
     unsafe { asm!("mret") }
 
