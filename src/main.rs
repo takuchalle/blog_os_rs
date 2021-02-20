@@ -28,7 +28,7 @@ pub extern "C" fn _start() -> ! {
     mstatus.set_mpp(csr::mstatus::Mpp::Super);
     mstatus.write();
 
-    let addr = unsafe { (&trap_entry as *const u8) } as usize;
+    let addr = unsafe { &trap_entry as *const u8 } as usize;
     println!("addr {:X}", addr);
     csr::mepc::Mepc::write(addr);
 

@@ -14,7 +14,9 @@ pub enum Mpp {
 
 impl Mstatus {
     pub fn read() -> Mstatus {
-        Mstatus { state: read_csr!(0x300) }
+        Mstatus {
+            state: read_csr!(0x300),
+        }
     }
 
     pub fn write(&self) {
