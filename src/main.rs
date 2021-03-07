@@ -42,6 +42,9 @@ pub extern "C" fn _start() -> ! {
     sie.enable_ssie();
     sie.write();
 
+    let satp = csr::satp::Satp{ mode: csr::satp::Mode::Bare, asid: 0, ppw: 0 };
+    satp.write();
+
     // switch to supervisor mode
     unsafe { asm!("mret") }
 
